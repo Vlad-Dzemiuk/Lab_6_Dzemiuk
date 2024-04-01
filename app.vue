@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { onMounted, ref, computed } from 'vue';
+
 const columns = [
   {
     key: 'title',
@@ -61,6 +63,10 @@ const filteredRows = computed(() => {
     })
   })
 })
+
+onMounted(() => {
+  document.title = 'Список продуктів';
+});
 </script>
 
 <template>
