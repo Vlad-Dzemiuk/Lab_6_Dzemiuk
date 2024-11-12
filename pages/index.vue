@@ -43,23 +43,17 @@ const columns = [
 ]
 
 const { data } = await useLazyAsyncData<any>('products', () => $fetch('https://dummyjson.com/products'))
-
 const products = data.value.products
-
 const page = ref(1)
 const pageCount = 5
-
 const rows = computed(() => {
   return filteredRows.value.slice((page.value - 1) * pageCount, (page.value) * pageCount)
 })
-
 const q = ref('')
-
 const filteredRows = computed(() => {
   if (!q.value) {
     return products
   }
-
   return products.filter((product: any) => {
     return Object.values(product).some((value) => {
       return String(value).toLowerCase().includes(q.value.toLowerCase())
